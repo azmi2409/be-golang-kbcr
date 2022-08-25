@@ -14,11 +14,11 @@ import (
 	"gorm.io/gorm/logger"
 
 	// Import MySQL database driver
-	// _ "github.com/jinzhu/gorm/dialects/mysql"
+	_ "github.com/jinzhu/gorm/dialects/mysql"
 	"gorm.io/driver/mysql"
 
 	// Import PostgreSQL database driver
-	_ "github.com/jinzhu/gorm/dialects/postgres"
+	// "github.com/jinzhu/gorm/dialects/postgres"
 	"gorm.io/driver/postgres"
 
 	// Import SQLite3 database driver
@@ -56,7 +56,7 @@ var mongoClient *qmgo.Client
 func InitDB() *gorm.DB {
 	var db = dbClient
 
-	configureDB := config.GetConfig().Database.RDBMS
+	configureDB := config.Database().RDBMS
 
 	driver := configureDB.Env.Driver
 	username := configureDB.Access.User

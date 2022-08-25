@@ -15,6 +15,5 @@ type User struct {
 	FirstName string         `json:"firstName,omitempty"`
 	LastName  string         `json:"lastName,omitempty"`
 	IDAuth    uint64         `json:"-"`
-	Posts     []Post         `gorm:"foreignkey:IDUser;references:UserID;constraint:OnUpdate:CASCADE,OnDelete:CASCADE" json:"posts,omitempty"`
-	Hobbies   []Hobby        `gorm:"many2many:user_hobbies" json:"hobbies,omitempty"`
+	Avatar    string         `json:"avatar,omitempty"`
 }

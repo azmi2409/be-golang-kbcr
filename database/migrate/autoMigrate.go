@@ -17,15 +17,12 @@ import (
 type auth model.Auth
 type twoFA model.TwoFA
 type user model.User
-type post model.Post
-type hobby model.Hobby
-type userHobby model.UserHobby
 
 var db *gorm.DB
 var errorState int
 
 func main() {
-	configureDB := config.GetConfig().Database.RDBMS
+	configureDB := config.Database().RDBMS
 	driver := configureDB.Env.Driver
 
 	/*
@@ -51,7 +48,6 @@ func main() {
 
 	// Manually set foreign keys for MySQL and PostgreSQL
 	if driver != "sqlite3" {
-		setPkFk()
 	}
 
 	if errorState == 0 {
@@ -64,9 +60,6 @@ func main() {
 func dropAllTables() {
 	// Careful! It will drop all the tables!
 	if err := db.Migrator().DropTable(
-		&userHobby{},
-		&hobby{},
-		&post{},
 		&user{},
 		&twoFA{},
 		&auth{},
@@ -79,7 +72,7 @@ func dropAllTables() {
 }
 
 func migrateTables() {
-	configureDB := config.GetConfig().Database.RDBMS
+	configureDB := config.Database().RDBMS
 	driver := configureDB.Env.Driver
 
 	if driver == "mysql" {
@@ -88,8 +81,6 @@ func migrateTables() {
 			&auth{},
 			&twoFA{},
 			&user{},
-			&post{},
-			&hobby{},
 		); err != nil {
 			errorState = 1
 			fmt.Println(err)
@@ -97,20 +88,11 @@ func migrateTables() {
 			fmt.Println("New tables are  migrated successfully!")
 		}
 	} else {
-		if err := db.AutoMigrate(&auth{},
-			&user{}, &post{}, &hobby{}); err != nil {
+		if err := db.AutoMigrate(&auth{}, &user{}); err != nil {
 			errorState = 1
 			fmt.Println(err)
 		} else {
 			fmt.Println("New tables are  migrated successfully!")
 		}
-	}
-}
-
-func setPkFk() {
-	// Manually set foreign key for MySQL and PostgreSQL
-	if err := db.Migrator().CreateConstraint(&user{}, "Posts"); err != nil {
-		errorState = 1
-		fmt.Println(err)
 	}
 }

@@ -22,6 +22,7 @@ type Auth struct {
 	DeletedAt gorm.DeletedAt `gorm:"index" json:"-"`
 	Email     string         `json:"email"`
 	Password  string         `json:"password"`
+	Role      uint8          `json:"role" gorm:"default:1"`
 }
 
 // UnmarshalJSON ...

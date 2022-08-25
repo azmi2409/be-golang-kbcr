@@ -43,7 +43,7 @@ func env() {
 func Config() *Configuration {
 	var configuration Configuration
 
-	configuration.Database = database()
+	configuration.Database = Database()
 	configuration.EmailConf = email()
 	configuration.Logger = logger()
 	configuration.Security = security()
@@ -61,7 +61,7 @@ func GetConfig() *Configuration {
 }
 
 // database - all DB variables
-func database() DatabaseConfig {
+func Database() DatabaseConfig {
 	var databaseConfig DatabaseConfig
 
 	// Load environment variables
