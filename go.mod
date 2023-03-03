@@ -11,7 +11,7 @@ require (
 	github.com/jinzhu/gorm v1.9.16
 	github.com/joho/godotenv v1.4.0
 	github.com/mediocregopher/radix/v4 v4.1.0
-	github.com/mrz1836/postmark v1.2.11
+	github.com/mrz1836/postmark v1.4.0
 	github.com/onrik/logrus v0.9.0
 	github.com/pilinux/structs v1.1.1
 	github.com/qiniu/qmgo v1.1.1
@@ -48,7 +48,6 @@ require (
 	github.com/json-iterator/go v1.1.12 // indirect
 	github.com/klauspost/compress v1.13.6 // indirect
 	github.com/leodido/go-urn v1.2.1 // indirect
-	github.com/lib/pq v1.10.2 // indirect
 	github.com/mattn/go-isatty v0.0.14 // indirect
 	github.com/mattn/go-sqlite3 v1.14.12 // indirect
 	github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd // indirect
